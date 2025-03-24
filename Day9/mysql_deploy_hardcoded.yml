@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment 
+metadata:
+  name: "mysqldb"
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      team: prod
+  template:
+    metadata:
+      labels:
+        team: prod
+    spec:
+      containers:
+      - name: "c1"
+        image: "mysql"
+        env:
+        - name: MYSQL_ROOT_PASSWORD
+          value: mypassword
+        - name: MYSQL_DATABASE
+          value: lwdb
+        - name: MYSQL_USER
+          value: sayantan
+        - name: MYSQL_PASSWORD
+          value: mypassword

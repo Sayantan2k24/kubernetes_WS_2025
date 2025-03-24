@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: ReplicaSet
+metadata:
+  name: "myrs1"
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      team: prod
+  template:
+    metadata:
+      labels:
+        app: web
+        region: US
+        team: prod
+    spec:
+     containers:
+     - name: "myc1"
+       image: "vimal13/apache-webserver-php"

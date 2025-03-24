@@ -1,0 +1,20 @@
+kubectl create secret generic mysecretbox --from-literal=u=sayantan --from-literal=p=mypassword
+
+kubectl get secret
+kubectl describe secret mysecretbox
+kubectl get secret mysecretbox -o yaml
+
+echo bXlwYXNzd29yZA== | openssl base64 -d
+echo c2F5YW50YW4= | openssl base64 -d
+
+kubectl apply -f mysql_deploy_secret.yml
+kubectl expose deployment mysqldb --type ClusterIP --port 3306 --dry-run=client
+kubectl expose deployment mysqldb --type ClusterIP --port 3306 --dry-run=client -o yaml
+kubectl expose deployment mysqldb --type ClusterIP --port 3306 --dry-run=client -o yaml >> mysql_deploy_secret.yml
+kubectl apply -f mysql_deploy_secret.yml
+
+kubectl create deployment wpapp --image=wordpress:latest --dry-run=client -o yaml
+kubectl create deployment wpapp --image=wordpress:latest --dry-run=client -o yaml > wordpress_deployment.yml
+kubectl expose deployment wpapp --type=NodePort --port 80 --dry-run=client -o yaml
+kubectl expose deployment wpapp --type=NodePort --port 80 --dry-run=client -o yaml >> wordpress_deployment.yml
+kubectl apply -f wordpress_deployment.yml

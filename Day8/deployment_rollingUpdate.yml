@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: "mydeploy"
+spec:
+  strategy:
+    type: RollingUpdate
+  replicas: 3
+  selector:
+    matchLabels:
+      team: prod
+  template:
+    metadata:
+      labels:
+        team: prod
+    spec:
+      containers:
+      - name: "c1"
+        image: "vimal13/apache-webserver-php:v1"

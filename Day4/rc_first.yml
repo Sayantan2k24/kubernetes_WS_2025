@@ -1,0 +1,20 @@
+Day4/rc_first.yml Day4/pod_first.ymlapiVersion: v1
+kind: ReplicationController
+metadata:
+  name: "myrc1"
+spec:
+  replicas: 1
+  selector:
+    team: prod
+  template:
+    metadata:
+      labels:
+        app: web
+        region: US
+        team: prod
+    spec:
+     containers:
+     - name: "myc1"
+       image: "vimal13/apache-webserver-php"
+
+    

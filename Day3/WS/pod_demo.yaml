@@ -1,0 +1,4 @@
+kind: Pod
+spec:
+  containers:
+  - image: "vimal13/apache-webserver-php"
