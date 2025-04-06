@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: myweb
+  name: myweb
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: myweb
+  template:
+    metadata:
+      labels:
+        app: myweb
+    spec: # pod spec starts 
+      volumes:
+        - name: pod-pvc1 # referene or local name of your pvc
+          persistentVolumeClaim: 
+            claimName: firstpvc # which pvc to use
+      containers: # container spec starts
+      - image: vimal13/apache-webserver-php
+        name: apache-webserver-php
+        volumeMounts:
+        - mountPath: "/data" # folder in container to make persistent
+          name: pod-pvc1 # reference of the pvc defined in the pod spec
+
