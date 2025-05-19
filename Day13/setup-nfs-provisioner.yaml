@@ -97,14 +97,14 @@ spec:
             - name: PROVISIONER_NAME
               value: k8s-sigs.io/nfs-subdir-external-provisioner
             - name: NFS_SERVER
-              value: 13.218.98.0
+              value: 192.168.0.107
             - name: NFS_PATH
-              value: /lwshare
+              value: /lwshare1
       volumes:
         - name: nfs-client-root
           nfs:
-            server: 13.218.98.0
-            path: /lwshare
+            server: 192.168.0.107
+            path: /lwshare1
 ---
 apiVersion: storage.k8s.io/v1
 kind: StorageClass
